@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Coursera Developing Data Products</title>
+  <meta name="description" content="">
+  <meta name="author" content="David Galbraith">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" href="libraries/frameworks/revealjs/css/reveal.min.css">
+  <link rel="stylesheet" href="libraries/frameworks/revealjs/css/theme/default.css" id="theme">
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/default.css" id="theme">
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->  <link rel="stylesheet" href = "assets/css/ribbons.css">
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class='' data-state='' id='slide-1'>
+  
+  <style>
+.reveal h1 {
+    font-size: 2em;
+    color: #ffffff;
+    text-align: left;
+    padding-bottom: 10px;
+    font-family: Verdana, sans-serif;
+}
+
+.reveal h2 {
+    font-size: 1.5em;
+    color: #ffffff;
+    text-align: left;
+    padding-bottom: 10px;
+    font-family: Verdana, sans-serif;
+}
+
+.reveal p {
+    font-size: 0.75em;
+    color: #ffffff;
+    text-align: left;
+    padding-bottom: 10px;
+    font-family: Verdana, sans-serif;
+}
+
+.reveal span.accent {
+    color: #13DAEC;
+}
+
+.reveal ol {
+    padding-bottom: 20px;
+}
+
+.reveal ol li {
+    font-size: 0.7em;
+    margin-left: 0px;
+    color: #ffffff;
+    text-align: left;
+    padding-bottom: 5px;
+    font-family: Verdana, sans-serif;
+}
+
+img {     
+  width: 700px; 
+  height: 445px;
+}
+</style>
+
+<h1>Developing Data Products</h1>
+
+<h2>Course Project: BodyCalc</h2>
+
+<hr>
+
+<p>David Galbraith</p>
+
+<p>March 13th, 2016</p>
+
+</section>
+<section class='' data-state='' id='slide-2'>
+  <h2>Introduction</h2>
+  <p>This <a href="http://slidify.org">Slidify</a> presentation is part of the Course Project for the <a href="https://www.coursera.org/learn/data-products">Coursera Developing Data Products</a> class.  The course is offered by John Hopkins University as part of the <a href="https://www.coursera.org/specializations/jhu-data-science">Data Science Specialization</a>.</p>
+
+<p>The course project consists of two parts:</p>
+
+<ol>
+<li>Create a Shiny application and deploy it on Rstudio&#39;s shiny server</li>
+<li>Use Slidify or Rstudio Presenter to pitch the app</li>
+</ol>
+
+<p>The app developed for the first part of the assignment is avalilable at:</p>
+
+<p><a href="https://djdgalbraith.shinyapps.io/BodyCalc/">https://djdgalbraith.shinyapps.io/BodyCalc/</a></p>
+
+<p>Source code for ui.R and server.R files are available on GitHub:</p>
+
+<p><a href="https://github.com/djdgalbraith/cjhdss/tree/master/Developing%20Data%20Products/Project/">https://github.com/djdgalbraith/cjhdss/tree/master/Developing%20Data%20Products/Project/</a></p>
+
+<p>Source for the Slidify pitch is available on GitHub:</p>
+
+<p><a href="https://github.com/djdgalbraith/cjhdss/tree/master/Developing%20Data%20Products/Project/pitch/">https://github.com/djdgalbraith/cjhdss/tree/master/Developing%20Data%20Products/Project/pitch/</a></p>
+
+<p>The Slidify presentation can be viewed on RPub:
+<a href="http://rpubs.com/djdgalbraith/BodyCalc">http://rpubs.com/djdgalbraith/BodyCalc/</a></p>
+
+</section>
+<section class='' data-state='' id='slide-3'>
+  <h2>BodyCalc Pitch</h2>
+  <p>The BodyCalc application was developed with several goals in mind:</p>
+
+<ol>
+<li>Provide an online repository for Body Mass Calculations</li>
+<li>Provide a dynamic interface that customized the user interface based on calculation selection</li>
+<li>Displayed the results of the selected Body Mass calculation using the supplied input parameters</li>
+</ol>
+
+<p>There are a number of calculations available to provide an estimate of a body mass index.  This index represents an attempt to quantify the amount of tissue mass in an individual and then categorize the individual as a member of a broad population based on this value.</p>
+
+<p>Concerns have been identified as to the effectiveness of using the basic BMI and a number of alternative approaches have been identified.</p>
+
+<p>A number of approaches have been implemented and are accessible to provide for direct comparisons:</p>
+
+<ol>
+<li>Body Mass Index</li>
+<li>Body Mass Index Prime</li>
+<li>A Body Shaped Index</li>
+<li>Surface-based Body Shape Index</li>
+</ol>
+
+<hr>
+
+<h2>BodyCalc Data</h2>
+
+<p>No external data is required to facilitate BodyCalc operation.</p>
+
+<p>Once a calculation type is selected the interface is dynamically customized to capture relevant data which includes variously:
+1. Height in meters
+2. Weight in kilograms
+3. Waist circumference in meters
+4, Body Surface area
+5. Vertical Trunk Circumference</p>
+
+</section>
+<section class='' data-state='' id='slide-4'>
+  <h2>BodyCalc Calculations</h2>
+  <pre><code class="r">calculators &lt;-  c(&quot;Body Mass Index&quot;,
+                  &quot;Body Mass Index Prime&quot;,
+                  &quot;A Body Shape Index&quot;,
+                  &quot;Surface-based Body Shape Index&quot;
+          )
+</code></pre>
+
+<p>A total of 1 Body Mass Calculators have been implemented.  These are:</p>
+
+<ol>
+<li><p>BMI
+The ratio of a persons height to their mass squared.</p></li>
+<li><p>BMI Prime
+BMI Prime is a modification of the BMI system and is the ratio of actual BMI to upper limit BMI (currently defined at BMI 25). </p></li>
+<li><p>ABSI
+An index which defines body composition through waist circumference adjusted for weight and height.</p></li>
+<li><p>SBSI
+sAn index which defines body composition  through surface area adjusted for weight and height.</p></li>
+</ol>
+
+</section>
+<section class='' data-state='' id='slide-5'>
+  <h2>References</h2>
+  <ol>
+<li><a href="https://en.wikipedia.org/wiki/Body_mass_index">Wikipedia Body Mass Index</a></li>
+<li><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3399847/">A New Body Shape Index Predicts Mortality Hazard Independently of Body Mass Index</a></li>
+<li><a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0144639">Surface-Based Body Shape Index and Its Relationship with All-Cause Mortality</a></li>
+</ol>
+
+</section>
+    </div>
+  </div>
+</body>
+  <script src="libraries/frameworks/revealjs/lib/js/head.min.js"></script>
+  <script src="libraries/frameworks/revealjs/js/reveal.min.js"></script>
+  <script>
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    theme: Reveal.getQueryHash().theme || 'default', 
+    transition: Reveal.getQueryHash().transition || 'default', 
+    dependencies: [
+    // Cross-browser shim that fully implements classList -
+    // https://github.com/eligrey/classList.js/
+      { src: 'libraries/frameworks/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList;}},
+      // Zoom in and out with Alt+click
+      { src: 'libraries/frameworks/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Speaker notes
+      { src: 'libraries/frameworks/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Remote control your reveal.js presentation using a touch device
+      //{ src: 'libraries/frameworks/revealjs/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      ]
+  });
+  </script>  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script> -->
+<script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+<script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+ 
+
+</html>
