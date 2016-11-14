@@ -118,7 +118,7 @@ shinyServer(function(input, output, session) {
   calcresult <- reactive({
     switch(
       input$calculation,
-      # BMI = weight / henght ^ 2
+      # BMI = weight / height ^ 2
       "Body Mass Index" = input$weight / (input$height ^ 2),
       
       # BMI' = weight / height ^ 2 / 25
@@ -127,7 +127,7 @@ shinyServer(function(input, output, session) {
       # absi = waist circumference in meters / ( BMI(2/3) * height in meters(1/2) )
       "A Body Shape Index" = input$wc / ((input$weight / (input$height ^ 2)) ^ (2 / 3) * input$height ^ (1 / 2)),
       
-      # sbsm = ((H^(7/4)) * ((WC)^(5/6)) / (BSA * VTC)
+      # sbsi = ((H^(7/4)) * ((WC)^(5/6)) / (BSA * VTC)
       "Surface-based Body Shape Index" = ((input$height) ^ (7 / 4) * (input$wc) ^ (5 / 6)) / (input$bsa * input$vtc)
     )
   })

@@ -1,7 +1,0 @@
-name: Publish Document
-account: rpubs
-server: rpubs.com
-appId: https://api.rpubs.com/api/v1/document/160751/bd5444d746b64f218fc92f7d024b302c
-bundleId: https://api.rpubs.com/api/v1/document/160751/bd5444d746b64f218fc92f7d024b302c
-url: http://rpubs.com/djdgalbraith/160751
-when: 1457916457.92707
